@@ -20,7 +20,7 @@ def main():
     """
 
     data, capacity = get_data()
-    data = quicksort(data)
+    data = quicksort(data, 0, len(data) - 1)
     items = get_best_items(data, capacity)
 
 

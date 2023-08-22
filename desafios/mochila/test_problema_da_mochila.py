@@ -14,7 +14,7 @@ class TestProblemaDaMochila(unittest.TestCase):
             {'id': 5, 'utility': 4, 'weight': 2, 'disponibility': 5, 'ratio': 2}
         ]
 
-        sorted_data = quicksort(data)
+        sorted_data = quicksort(arr=data, low=0, high=len(data) - 1)
         self.assertEqual(sorted_data, [
             {'id': 3, 'utility': 10, 'weight': 2, 'disponibility': 2, 'ratio': 5},
             {'id': 0, 'utility': 18, 'weight': 5, 'disponibility': 1, 'ratio': 3.6},
