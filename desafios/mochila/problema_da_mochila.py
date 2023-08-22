@@ -1,21 +1,3 @@
-"""
- 18 5 1
-12 4 2
-15 5 3
-10 2 2
-15 6 5
-4 2 5
--1 -1 -1
-20
-
-
-3 2
-0 1
-1 2
-5 1
-"""
-
-
 def is_valid(utility, weight, disponibility):
     return utility > 0 and weight > 0 and disponibility > 0
 
@@ -55,6 +37,30 @@ def quicksort(arr):
     return quicksort(greater) + [pivot] + quicksort(less)
 
 
+# def partition(arr, low, high):
+#     i = (low - 1)
+#     pivot = arr[high]['ratio']
+
+#     for j in range(low, high):
+#         if arr[j]['ratio'] > pivot:
+#             i = i + 1
+#             arr[i], arr[j] = arr[j], arr[i]
+
+#     arr[i + 1], arr[high] = arr[high], arr[i + 1]
+
+#     return (i + 1)
+
+
+# def quicksort(arr, low, high):
+#     if low < high:
+#         pivot = partition(arr, low, high)
+
+#         quicksort(arr, low, pivot - 1)
+#         quicksort(arr, pivot + 1, high)
+
+#     return arr
+
+
 def get_best_items(data, capacity):
     items: list(tuple) = []
 
@@ -70,12 +76,3 @@ def get_best_items(data, capacity):
         capacity -= min(max_opportunity, max_disponibility) * value['weight']
 
     return items
-
-
-data, capacity = get_data()
-data = quicksort(data)
-items = get_best_items(data, capacity)
-
-
-for item in items:
-    print(item[0], item[1])
