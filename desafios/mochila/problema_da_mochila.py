@@ -47,6 +47,17 @@ def quicksort(arr, low, high):
 
     return arr
 
+def quicksort_simplified(arr):
+
+    if len(arr) < 2:
+        return arr
+
+    pivot = arr[0]
+    less = [i for i in arr[1:] if i['ratio'] <= pivot['ratio']]
+    greater = [i for i in arr[1:] if i['ratio'] > pivot['ratio']]
+
+    return quicksort(greater) + [pivot] + quicksort(less)
+
 
 def get_best_items(data, capacity):
     items: list(tuple) = []
