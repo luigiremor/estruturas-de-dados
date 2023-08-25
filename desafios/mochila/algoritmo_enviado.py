@@ -24,30 +24,8 @@ def get_data():
 
     return data, capacity
 
-def partition(arr, low, high):
-    i = (low - 1)
-    pivot = arr[high]['ratio']
 
-    for j in range(low, high):
-        if arr[j]['ratio'] > pivot:
-            i = i + 1
-            arr[i], arr[j] = arr[j], arr[i]
-
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-
-    return (i + 1)
-
-
-def quicksort(arr, low, high):
-    if low < high:
-        pivot = partition(arr, low, high)
-
-        quicksort(arr, low, pivot - 1)
-        quicksort(arr, pivot + 1, high)
-
-    return arr
-
-def quicksort_simplified(arr):
+def quicksort(arr):
 
     if len(arr) < 2:
         return arr
@@ -56,7 +34,7 @@ def quicksort_simplified(arr):
     less = [i for i in arr[1:] if i['ratio'] <= pivot['ratio']]
     greater = [i for i in arr[1:] if i['ratio'] > pivot['ratio']]
 
-    return quicksort_simplified(greater) + [pivot] + quicksort_simplified(less)
+    return quicksort(greater) + [pivot] + quicksort(less)
 
 
 def get_best_items(data, capacity):
@@ -74,3 +52,12 @@ def get_best_items(data, capacity):
         capacity -= min(max_opportunity, max_disponibility) * value['weight']
 
     return items
+
+
+data, capacity = get_data()
+data = quicksort(data)
+items = get_best_items(data, capacity)
+
+
+for item in items:
+    print(item[0], item[1])
