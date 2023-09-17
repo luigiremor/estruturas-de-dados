@@ -35,21 +35,16 @@ class LinkedList:
         return distance
 
     def swap_adjacent_nodes(self, prev):
-        if not prev:
-            first = self.head
-        else:
-            first = prev.next
+
+        first = prev.next if prev else self.head
 
         if not first:
             return
 
-        if first.next:
-            second = first.next
-        else:
-            second = None
+        second = first.next if first else None
 
         if not second:
-            # last with first
+            # Swap last with first condition
             second = self.head
             prev.next = second
             first.next = second.next
@@ -57,7 +52,7 @@ class LinkedList:
             self.head = first
             return
 
-        # Swap
+        # Regular swap
         first.next = second.next
         second.next = first
         if prev:
@@ -93,11 +88,11 @@ class LinkedList:
                     prev = self.head
 
 
-def main():
+def main(input_data):
     cities = LinkedList()
 
-    while True:
-        x, y = map(int, input().split())
+    for line in input_data:
+        x, y = map(int, line.split())
         if x == -1 and y == -1:
             break
         cities.append(x, y)
@@ -106,8 +101,4 @@ def main():
     cities.improve()
     improved_cost = cities.total_distance()
 
-    print("{:.2f}".format(original_cost))
-    print("{:.2f}".format(improved_cost))
-
-
-main()
+    return "{:.2f}".format(original_cost), "{:.2f}".format(improved_cost)
