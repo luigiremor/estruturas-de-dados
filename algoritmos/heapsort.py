@@ -10,15 +10,17 @@ def heapsort(arr):
 def downheap(arr, i, heap_size):
     left_child = 2*i+1
     right_child = 2*i+2
+    largest = i
 
-    if left_child < heap_size:
-        big_child = left_child
-        if right_child < heap_size:
-            if arr[right_child] > arr[left_child]:
-                big_child = right_child
-        if arr[big_child] > arr[i]:
-            arr[i], arr[big_child] = arr[big_child], arr[i]
-            downheap(arr, big_child, heap_size)
+    if left_child < heap_size and arr[left_child] > arr[largest]:
+        largest = left_child
+
+    if right_child < heap_size and arr[right_child] > arr[largest]:
+        largest = right_child
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        downheap(arr, largest, heap_size)
 
 
 unordered_list = [4, 3, 2, 1, 9, 8, 7, 6, 5]
